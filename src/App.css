@@ -99,6 +99,8 @@ li:hover {
   margin: 0;
   margin-top: 1.5rem;
   z-index: 1;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .question-card {

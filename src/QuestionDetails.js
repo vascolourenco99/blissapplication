@@ -9,14 +9,13 @@ function QuestionDetails() {
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedChoice, setSelectedChoice] = useState(null);
-
   useEffect(() => {
     async function fetchQuestion() {
       try {
         const url = `https://private-anon-9c8cf81161-blissrecruitmentapi.apiary-mock.com/questions/${id}`;
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data);
+        // console.log(data);
         setQuestion(data);
         setLoading(false);
       } catch (error) {
@@ -43,8 +42,10 @@ function QuestionDetails() {
     }
   };
 
+  /* This method needs to be update if this APP goes to production */
   const handleShare = () => {
-    const shareUrl = `${window.location.origin}/questions/${question.id}`;
+    const shareUrl = `${window.location.origin}/questions/${id}`;
+    console.log(`${window.location.origin}/questions/${id}`)
     if (navigator.share) {
       navigator.share({
         title: question.question,
