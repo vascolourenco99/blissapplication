@@ -31,11 +31,14 @@ function QuestionList({ questions, handleQuestionClick, setQuestions }) {
         <button className="dismiss-button" onClick={handleDismiss}>Dismiss</button>
       </div>
       <ul className="question-list">
-        {questions.map((question) => (
-          <div key={question.id} className="question-card" onClick={() => handleQuestionClick(question.id)}>
-            {question.question}
-          </div>
-        ))}
+      {questions.map((question) => (
+  <li key={question.id} className="question-card" onClick={() => handleQuestionClick(question.id)}>
+    <div>
+      <img src={question.thumb_url} alt={question.question} />
+      <h3>{question.question}</h3>
+    </div>
+  </li>
+))}
       </ul>
     </>
   );

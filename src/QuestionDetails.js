@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from './Loader';
 import './QuestionDetail.css'
+import './App.css';
 
 function QuestionDetails() {
   const { id } = useParams();
@@ -42,6 +43,19 @@ function QuestionDetails() {
     }
   };
 
+  const handleShare = () => {
+    const shareUrl = `${window.location.origin}/questions/${question.id}`;
+    if (navigator.share) {
+      navigator.share({
+        title: question.question,
+        url: shareUrl
+      })
+        .catch(console.error);
+    } else {
+      alert(`Share this URL: ${shareUrl}`);
+    }
+  };
+
   return (
     <div className="question-container">
       {question ? (
@@ -60,13 +74,16 @@ function QuestionDetails() {
               </li>
             ))}
           </ul>
-          <div className="choices-list">
-            <button className="back-button" onClick={() => window.history.back()}>
+          <div className='buttons'>
+            <button className="search-button" onClick={() => window.history.back()}>
               Back
             </button>
-            <button className="vote-button" onClick={handleVote} disabled={selectedChoice}>
+            <button className="search-button" onClick={handleVote} disabled={selectedChoice}>
               Vote
             </button>
+            <button className="search-button" onClick={handleShare}>
+            Share
+          </button>
           </div>
         </>
       ) : (

@@ -1,3 +1,4 @@
+/* Styles for desktop/laptop */
 .question-container {
   display: flex;
   flex-direction: column;
@@ -15,6 +16,7 @@
   max-width: 100%;
   height: auto;
   margin: 20px 0;
+  border-radius: 5%;
 }
 
 .choices-list {
@@ -25,6 +27,9 @@
 }
 
 .choice-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 10px;
 }
 
@@ -39,6 +44,7 @@
   color: #333;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
+  text-align: center;
 }
 
 .choice-button:hover {
@@ -51,35 +57,39 @@
   color: #fff;
 }
 
-.back-button,
-.vote-button {
-  display: inline-block;
-  font-size: 16px;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  background-color: #333;
-  color: #fff;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  margin-left: 10px;
-}
-
-.back-button:hover,
-.vote-button:hover {
-  background-color: #fff;
-  color: #333;
-}
-
-.vote-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 .loader-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 200px;
+}
+
+/* Styles for mobile */
+@media only screen and (max-width: 600px) {
+  .question-title {
+    font-size: 20px;
+    margin: 10px 0;
+  }
+  
+  .question-image {
+    margin: 10px 0;
+  }
+  
+  .choices-list {
+    flex-direction: column;
+    margin-bottom: 10px;
+  }
+  
+  .choice-item {
+    margin: 5px 0;
+  }
+  
+  .choice-button {
+    font-size: 14px;
+    padding: 8px 16px;
+  }
+  
+  .loader-container {
+    height: 100px;
+  }
 }
