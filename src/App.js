@@ -1,11 +1,11 @@
 import { useState, useEffect } from 'react';
-import Loader from './componets/Loader';
+import Loader from './components/Loader';
 import './App.css';
 import { QUESTIONS_URL, HEALTH_URL, QUESTIONS_LIMIT, QUESTIONS_OFFSET } from './resources/constants';
 import {Routes ,Route, useNavigate } from 'react-router-dom';
-import QuestionDetails from './componets/QuestionDetails';
-import QuestionsList from './componets/QuestionsList';
-import OfflineScreen from './componets/OfflineScreen';
+import QuestionDetails from './components/QuestionDetails';
+import QuestionsList from './components/QuestionsList';
+import OfflineScreen from './components/OfflineScreen';
 
 // Main component
 function App() {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from './Loader';
-import './QuestionDetails'
+import './QuestionDetails.css'
 import '../App.css';
 import ShareModal from './ShareModal';
 
