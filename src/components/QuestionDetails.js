@@ -4,6 +4,9 @@ import Loader from './Loader';
 import './QuestionDetails.css'
 import '../App.css';
 import ShareModal from './ShareModal';
+import { faTimes, faSearch, faArrowLeft, faShare } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 
 
 function QuestionDetails() {
@@ -42,12 +45,12 @@ function QuestionDetails() {
     if (!selectedChoice) {
       return;
     }
-  
+
     if (!question.choices) {
       console.error("Question choices not defined");
       return;
     }
-    
+
     const updatedChoices = question.choices.map((choice) => {
       if (choice.choice === selectedChoice) {
         return {
@@ -62,10 +65,10 @@ function QuestionDetails() {
       ...question,
       choices: updatedChoices,
     };
-  
+
     /* console.log("Os votos atualizados")
     console.log(updatedChoices) */
-  
+
     try {
       fetch(
         `https://private-anon-2c8b79ecec-blissrecruitmentapi.apiary-mock.com/questions/${id}`,
@@ -93,41 +96,42 @@ function QuestionDetails() {
   };
 
   return (
-    <div className="question-container">
+    <div className="question-fullscreen">
+      <FontAwesomeIcon className="question-back-button" icon={faArrowLeft} onClick={() => window.history.back()}/>
+      <button className="question-share-button" onClick={handleShare}>
+        <FontAwesomeIcon icon={faShare} className="question-share-button-icon"/>
+        Share
+      </button>
+      <ShareModal isOpen={isModalOpen} onClose={handleModalClose} />
+      <div className="question-container">
       {question ? (
         <>
           <h1 className="question-title">{question.question}</h1>
-          <img className="question-image" src={question.image_url} alt={question.question} />
-          <ul className="choices-list">
-            {question.choices.map((choice) => (
-              <li key={choice.url} className="choice-item">
-                <button
-                  className={`choice-button ${selectedChoice === choice.choice ? "selected" : ""}`}
-                  onClick={() => handleChoiceClick(choice)}
-                >
-                  {`${choice.choice}: ${choice.votes} votes`}
-                </button>
-              </li>
-            ))}
-          </ul>
-          <div className='buttons'>
-            <button className="back-button" onClick={() => window.history.back()}>
-              Back
-            </button>
-            <button className="vote-button" onClick={handleVote} disabled={!selectedChoice}>
-              Vote
-            </button>
-            <button className="share-button" onClick={handleShare}>
-            Share
-          </button>
-          <ShareModal isOpen={isModalOpen} onClose={handleModalClose} />
+          <div className="question-details">
+            <img className="question-image" src={question.image_url} alt={question.question} />
+            <ul className="choices-list">
+              {question.choices.map((choice) => (
+                <li key={choice.url} className="choice-item">
+                  <button
+                    className={`choice-button ${selectedChoice === choice.choice ? "selected" : ""}`}
+                    onClick={() => handleChoiceClick(choice)}
+                  >
+                    {`${choice.choice}: ${choice.votes} votes`}
+                  </button>
+                </li>
+              ))}
+            </ul>
           </div>
+          <button className="question-vote-button" onClick={handleVote} disabled={!selectedChoice}>
+            Vote
+          </button>
         </>
       ) : (
         <div className="loader-container">
           <Loader loading={loading} />
         </div>
       )}
+      </div>
     </div>
   );
 }
