@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from './Loader';
-import './QuestionDetail.css'
-import './App.css';
+import './QuestionDetails'
+import '../App.css';
 import ShareModal from './ShareModal';
 
 
@@ -111,13 +111,13 @@ function QuestionDetails() {
             ))}
           </ul>
           <div className='buttons'>
-            <button className="search-button" onClick={() => window.history.back()}>
+            <button className="back-button" onClick={() => window.history.back()}>
               Back
             </button>
-            <button className="search-button" onClick={handleVote} disabled={!selectedChoice}>
+            <button className="vote-button" onClick={handleVote} disabled={!selectedChoice}>
               Vote
             </button>
-            <button className="search-button" onClick={handleShare}>
+            <button className="share-button" onClick={handleShare}>
             Share
           </button>
           <ShareModal isOpen={isModalOpen} onClose={handleModalClose} />

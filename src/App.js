@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react';
-import Loader from './Loader';
+import Loader from './componets/Loader';
 import './App.css';
-import { QUESTIONS_URL, HEALTH_URL, QUESTIONS_LIMIT, QUESTIONS_OFFSET } from './constants';
+import { QUESTIONS_URL, HEALTH_URL, QUESTIONS_LIMIT, QUESTIONS_OFFSET } from './resources/constants';
 import {Routes ,Route, useNavigate } from 'react-router-dom';
-import QuestionDetails from './QuestionDetails';
-import QuestionList from './QuestionList';
+import QuestionDetails from './componets/QuestionDetails';
+import QuestionsList from './componets/QuestionsList';
+import OfflineScreen from './componets/OfflineScreen';
 
 // Main component
 function App() {
@@ -14,6 +15,7 @@ function App() {
   const [healthStatus, setHealthStatus] = useState(null);
   const [filter] = useState('');
   const [questions, setQuestions] = useState([]);
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
 
   // Effect hook to fetch health status from server
   useEffect(() => {
@@ -56,35 +58,41 @@ function App() {
     navigate(url);
   };
 
+  useEffect(() => {
+    const handleOnlineStatus = () => {
+      setIsOnline(true);
+    };
+
+    const handleOfflineStatus = () => {
+      setIsOnline(false);
+    };
+
+    window.addEventListener('online', handleOnlineStatus);
+    window.addEventListener('offline', handleOfflineStatus);
+
+    return () => {
+      window.removeEventListener('online', handleOnlineStatus);
+      window.removeEventListener('offline', handleOfflineStatus);
+    };
+  }, []);
+
   // Render main component with questions list and search bar if health status is OK
   return (
-   
-      <div className="App">
-        {healthStatus === 'OK' ? (
-          <>
-            <div className="loader-container">
-              <Loader loading={loading} />
-            </div>
-            <Routes>
-            <Route path="/" element={<QuestionList questions={questions} handleQuestionClick={handleQuestionClick} setQuestions={setQuestions} />} />
+    <div className="App">
+      {healthStatus === 'OK' ? (
+        <>
+          <div className="loader-container">
+            <Loader loading={loading} />
+          </div>
+          <Routes>
+            <Route path="/" element={<QuestionsList questions={questions} handleQuestionClick={handleQuestionClick} setQuestions={setQuestions} />} />
             <Route path="/questions/:id/" element={<QuestionDetails/>} />
           </Routes>  
-          </>
-        ) : (
-          <>
-            <div className="loader-container">
-              <Loader loading={loading} />
-            </div>
-            <div className="App">
-              <h1>Oh Nooo! Try Again</h1>
-              <button className='search-button' onClick={() => window.location.reload()}>
-                Reload
-              </button>
-            </div>
-          </>
-        )}
-      </div>
-    
+        </>
+      ) : (
+        <OfflineScreen />
+      )}
+    </div>
   );
 }
 
