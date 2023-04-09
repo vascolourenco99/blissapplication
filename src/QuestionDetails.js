@@ -21,7 +21,7 @@ function QuestionDetails() {
         const url = `https://private-anon-9c8cf81161-blissrecruitmentapi.apiary-mock.com/questions/${id}`;
         const response = await fetch(url);
         const data = await response.json();
-        // console.log(data);
+        console.log(data);
         setQuestion(data);
         setLoading(false);
       } catch (error) {
@@ -43,6 +43,11 @@ function QuestionDetails() {
       return;
     }
   
+    if (!question.choices) {
+      console.error("Question choices not defined");
+      return;
+    }
+    
     const updatedChoices = question.choices.map((choice) => {
       if (choice.choice === selectedChoice) {
         return {
@@ -52,44 +57,28 @@ function QuestionDetails() {
       }
       return choice;
     });
-  
-    const mergedQuestion = {
+
+    const updatedQuestion = {
       ...question,
-      choices: question.choices.map((choice) => {
-        const updatedChoice = updatedChoices.find((c) => c.choice === choice.choice);
-        if (updatedChoice) {
-          return {
-            ...choice,
-            votes: choice.votes + updatedChoice.votes,
-          };
-        }
-        return choice;
-      }),
+      choices: updatedChoices,
     };
   
-    console.log("A resposta atualizada")
-    console.log(mergedQuestion);
+    /* console.log("Os votos atualizados")
+    console.log(updatedChoices) */
   
     try {
-      const response = await fetch(
+      fetch(
         `https://private-anon-2c8b79ecec-blissrecruitmentapi.apiary-mock.com/questions/${id}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(mergedQuestion),
+          body: JSON.stringify({updatedQuestion}),
         }
       );
-  
-      if (response.ok) {
-        const data = await response.json();
-        setQuestion(data);
-        console.log("data for PUT")
-        console.log(data)
-      } else {
-        console.error(`Error updating question with id ${id}:`, response);
-      }
+      //console.log(updatedQuestion)
+      setQuestion(updatedQuestion)
     } catch (error) {
       console.error(`Error updating question with id ${id}:`, error);
     }
