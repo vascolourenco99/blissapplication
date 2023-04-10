@@ -7,9 +7,10 @@ To use this project, please follow these steps:
 
 Install dependencies by running npm install.
 Install the following packages by running:
-npm install --save react-spinners
-npm install --save react-router-dom
-npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+
+# npm install --save react-spinners
+# npm install --save react-router-dom
+# npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
 
 ### `npm start`
 
