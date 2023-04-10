@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import Loader from './Loader';
 import './QuestionDetails.css'
 import '../App.css';
 import ShareModal from './ShareModal';
-import { faTimes, faSearch, faArrowLeft, faShare } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faShare } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-
+import {getQuestion, putQuestionVote} from '../api'
 
 function QuestionDetails() {
   const { id } = useParams();
@@ -15,30 +14,28 @@ function QuestionDetails() {
   const [loading, setLoading] = useState(true);
   const [selectedChoice, setSelectedChoice] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedChoiceVotes, setSelectedChoiceVotes] = useState(null)
+  //const [selectedChoiceVotes, setSelectedChoiceVotes] = useState(null)
 
+
+  const fetchQuestion = useCallback( async () => {
+    try {
+      const data =  await getQuestion(id)
+      //console.log(data);
+      setQuestion(data);
+      setLoading(false);
+    } catch (error) {
+      console.error(`Error fetching question with id ${id}:`, error);
+      setLoading(false);
+    }
+  }, [id])
 
   useEffect(() => {
-    async function fetchQuestion() {
-      try {
-        const url = `https://private-anon-9c8cf81161-blissrecruitmentapi.apiary-mock.com/questions/${id}`;
-        const response = await fetch(url);
-        const data = await response.json();
-        console.log(data);
-        setQuestion(data);
-        setLoading(false);
-      } catch (error) {
-        console.error(`Error fetching question with id ${id}:`, error);
-        setLoading(false);
-      }
-    }
-
     fetchQuestion();
-  }, [id]);
+  }, [fetchQuestion]);
 
   const handleChoiceClick = (choice) => {
     setSelectedChoice(choice.choice);
-    setSelectedChoiceVotes(choice.votes);
+    //setSelectedChoiceVotes(choice.votes);
   };
 
   const handleVote = async () => {
@@ -70,16 +67,7 @@ function QuestionDetails() {
     console.log(updatedChoices) */
 
     try {
-      fetch(
-        `https://private-anon-2c8b79ecec-blissrecruitmentapi.apiary-mock.com/questions/${id}`,
-        {
-          method: "PUT",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({updatedQuestion}),
-        }
-      );
+      await putQuestionVote(id, updatedQuestion) 
       //console.log(updatedQuestion)
       setQuestion(updatedQuestion)
     } catch (error) {
@@ -97,11 +85,13 @@ function QuestionDetails() {
 
   return (
     <div className="question-fullscreen">
-      <FontAwesomeIcon className="question-back-button" icon={faArrowLeft} onClick={() => window.history.back()}/>
-      <button className="question-share-button" onClick={handleShare}>
-        <FontAwesomeIcon icon={faShare} className="question-share-button-icon"/>
-        Share
-      </button>
+      <div className="question-header">
+        <FontAwesomeIcon className="question-back-button" icon={faArrowLeft} onClick={() => window.history.back()}/>
+        <button className="question-share-button" onClick={handleShare}>
+          <FontAwesomeIcon icon={faShare} className="question-share-button-icon"/>
+          Share
+        </button>
+      </div>
       <ShareModal isOpen={isModalOpen} onClose={handleModalClose} />
       <div className="question-container">
       {question ? (

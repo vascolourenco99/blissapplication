@@ -4,20 +4,21 @@
   height: 100%;
 }
 
+.question-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  align-items: center;
+}
+
 .question-back-button {
-  position: absolute;
   color: lightgray;
-  top: 20px;
-  left: 20px;
   font-size: 24px;
 }
 
 .question-share-button {
-  position: absolute;
   color: #121931;
   background-color: lightgray;
-  top: 20px;
-  right: 20px;
   font-size: 16px;
   border-radius: 5px;
   padding: 10px;
@@ -119,7 +120,8 @@ ul {
 @media only screen and (max-width: 600px) {
   .question-title {
     font-size: 20px;
-    margin: 10px 0;
+    margin: 1rem;
+    font-size: 21px !important;
   }
 
   .question-details {
@@ -131,6 +133,7 @@ ul {
 
   .question-image {
     margin: 10px 0;
+    width: 250px;
   }
 
   .choices-list {

@@ -1,9 +1,11 @@
+/* Import Google fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
+
 .App {
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: Arial, Helvetica, sans-serif;
-  color: #333;
+  font-family: 'Inter', sans-serif;
 }
 
 .loader-container {
@@ -11,4 +13,61 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+h1 {
+  font-weight: 800 !important;
+  font-size: 34px !important;
+  line-height: 40px !important;
+  text-align: center;
+  color: white !important;
+}
+
+h2 {
+  font-weight: 800 !important;
+  font-size: 29px !important;
+  line-height: 34px !important;
+}
+
+/* Not being used for now. */
+/* h3 {
+  font-weight: 700 !important;
+  font-size: 21px !important;
+  line-height: 26px;
+} */
+
+h4 {
+  font-weight: 700 !important;
+  font-size: 17px !important;
+  line-height: 24px;
+}
+
+h5 {
+  font-weight: 700 !important;
+  font-size: 16px !important;
+  line-height: 20px;
+}
+
+/* Not being used for now. */
+/* h6 {
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  line-height: 20px;
+  color: lightgray;
+} */
+
+p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 22px;
+}
+
+/* Define fonts for body and headers */
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Inter', sans-serif;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
 }

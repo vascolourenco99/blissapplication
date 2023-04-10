@@ -1,3 +1,11 @@
+.main-title {
+  margin-top: 5rem;
+}
+
+.subtitle {
+  margin: 16px;
+}
+
 .loader-container {
   position: absolute;
   top: 50%;
@@ -10,17 +18,8 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
-}
-
-h1 {
-  font-size: 2rem;
-  margin-top: 2rem;
-  margin-bottom: 1.5rem;
-  color: #F6F7FB;
-}
-
-h3 {
-  color: #F6F7FB;
+  align-self: center;
+  height: 2rem;
 }
 
 input[type="text"] {
@@ -29,9 +28,9 @@ input[type="text"] {
   border-radius: 3px;
   border: 1px solid #ddd;
   background-color: #999;
-  width: 24rem;
   color: #F6F7FB;
   font-weight: bold;
+  width: 15rem;
 }
 
 .icon-container-search {
@@ -39,6 +38,7 @@ input[type="text"] {
   top: 42%;
   left: 0.5rem;
   transform: translateY(-50%);
+  color: #F6F7FB;
 }
 
 .icon-container-dismiss{
@@ -50,14 +50,9 @@ input[type="text"] {
 
 .dismiss-icon {
  margin: 1px;
+ cursor: pointer;
+ color: #F6F7FB;
 }
-
-.search-icon,
-.dismiss-icon {
-  cursor: pointer;
-  color: #F6F7FB;
-}
-
 
 .question-card div {
   display: flex;
@@ -65,20 +60,17 @@ input[type="text"] {
 }
 
 .question-card img {
-  width: 50px;
   height: 50px;
-  margin-right: 1rem;
-  border-radius: 5%;
-  margin-left: 1rem;
+  width: 50px;
+  border-radius: 5px;
 }
 
-.question-card h3 {
+.question-card h4 {
   margin: 0;
-  font-size: 1.2rem;
-  font-weight: 50;
   color: #F6F7FB;
   flex: 1;
   margin-left: 1rem;
+  text-align: left;
 }
 
 ul {
@@ -104,10 +96,7 @@ ul {
   border-radius: 5px;
   margin-bottom: 1rem;
   cursor: pointer;
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
-  width: 25rem;
+  width: 23rem;
 }
 
 .question-card:hover {
@@ -116,6 +105,10 @@ ul {
 }
 
 @media only screen and (max-width: 600px) {
+  .main-title {
+    font-size: 29px !important;
+  }
+
   input[type="text"] {
     padding-left: 2rem;
     height: 1.5rem;
@@ -126,31 +119,27 @@ ul {
     color: #F6F7FB;
     font-weight: bold;
   }
-  
-  
+
+
   .icon-container-search {
     position: absolute;
     top: 42%;
     left: 0.5rem;
     transform: translateY(-50%);
   }
-  
+
   .icon-container-dismiss{
     position: absolute;
     top: 42%;
     right: 0.5rem;
     transform: translateY(-50%);
   }
-  
+
   .dismiss-icon {
-   margin: 1px;
-  }
-  
-  .search-icon,
-  .dismiss-icon {
+    margin: 1px;
     cursor: pointer;
     color: #F6F7FB;
-  }
+   }
 
   .question-card {
     padding: 1rem;
@@ -162,5 +151,9 @@ ul {
     font-weight: bold;
     color: #333;
     width: 16rem;
+  }
+
+  .question-card h4 {
+    font-size: 16px !important;
   }
 }
