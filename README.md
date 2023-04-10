@@ -2,9 +2,14 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+### `Installation`
+To use this project, please follow these steps:
 
-In the project directory, you can run:
+Install dependencies by running npm install.
+Install the following packages by running:
+npm install --save react-spinners
+npm install --save react-router-dom
+npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
 
 ### `npm start`
 
