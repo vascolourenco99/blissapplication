@@ -8,17 +8,17 @@ To use this project, please follow these steps:
 Install dependencies by running npm install.
 
 I use react-spinners in my React projects to display loading indicators while my application fetches data from an API. This package provides pre-built components that are easy to use and can save me time. By using these components, I can ensure consistency across my application's loading spinners.
-npm install --save react-spinners
+`npm install --save react-spinners`
 
 
 
 When I want to build a multi-page application, I turn to react-router-dom for its routing functionality. This package provides components like Route and Link that make it easy for me to define my application's routing logic. With react-router-dom, I can display different components or pages based on the URL, giving my users a seamless experience.
-npm install --save react-router-dom
+`npm install --save react-router-dom`
 
 
 
 Finally, I rely on @fortawesome/fontawesome-svg-core, @fortawesome/free-solid-svg-icons, and @fortawesome/react-fontawesome to provide Font Awesome icons in my web applications. These packages give me access to a collection of solid icons that are commonly used in web development. @fortawesome/fontawesome-svg-core provides the core functionality for using Font Awesome icons, while @fortawesome/react-fontawesome provides React components for displaying them. By using these packages, I can easily add high-quality icons to my projects without having to design them from scratch.
-npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome
+`npm install @fortawesome/fontawesome-svg-core @fortawesome/free-solid-svg-icons @fortawesome/react-fontawesome`
 
 ### `npm start`
 
