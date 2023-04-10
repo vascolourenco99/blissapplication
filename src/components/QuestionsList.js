@@ -2,6 +2,8 @@ import { useState } from 'react';
 import './QuestionsList.css';
 import { QUESTIONS_URL, QUESTIONS_LIMIT, QUESTIONS_OFFSET } from '../resources/constants';
 import Loader from './Loader';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
 
 // QuestionList component
 function QuestionList({ questions, handleQuestionClick, setQuestions }) {
@@ -34,24 +36,35 @@ function QuestionList({ questions, handleQuestionClick, setQuestions }) {
     }
   };
 
+  function handleKeyPress(event) {
+    console.log(event.key)
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  }
+
   return (
     <>
       <h1>List Screen</h1>
       <h3> Search for question! </h3>
-      <input className='App' type="text" value={filter} onChange={(e) => setFilter(e.target.value)} />
-      <div className='buttons'>
-        <button className='search-button' onClick={handleSearch}>Search</button>
-        <button className="dismiss-button" onClick={handleDismiss}>Dismiss</button>
-      </div>
+      <div className='search-container'>
+        <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} />
+        <div className='icon-container-search'>
+          <FontAwesomeIcon icon={faSearch} className='search-icon' onClick={handleSearch} onSubmit={handleKeyPress} />
+        </div>
+        <div className='icon-container-dismiss'> 
+          <FontAwesomeIcon icon={faTimes} className='dismiss-icon' onClick={handleDismiss} />
+        </div>
+      </div>  
       <ul className="question-list" onScroll={handleScroll}>
         {questions.map((question) => (
-          <li key={question.id} className="question-card" onClick={() => handleQuestionClick(question.id)}>
-            <div>
-              <img src={question.thumb_url} alt={question.question} />
-              <h3>{question.question}</h3>
-            </div>
-          </li>
-        ))}
+        <li key={question.id} className="question-card" onClick={() => handleQuestionClick(question.id)}>
+          <div>
+            <img src={question.thumb_url} alt={question.question} />
+            <h3>{question.question}</h3>
+          </div>
+        </li>
+      ))}
       </ul>
       {loading && (
         <div className="loader-container">

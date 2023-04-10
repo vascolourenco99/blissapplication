@@ -5,7 +5,7 @@ function Loader({ loading }) {
     <div>
       {loading && (
         <PuffLoader
-          color={'#000000'}
+          color={'#F6F7FB'}
           loading={loading}
           size={60}
           aria-label="Loading Spinner"

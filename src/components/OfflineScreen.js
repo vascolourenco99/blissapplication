@@ -1,10 +1,10 @@
 import React from 'react';
+import './OfflineScreen.css'
 
 const OfflineScreen = () => {
   return (
-    <div>
-      <h1>You are currently offline</h1>
-      <p>Please check your internet connection</p>
+    <div className='offline-container'>
+      <h2>You are currently offline, Please check your internet connection</h2>
     </div>
   );
 };
