@@ -48,6 +48,8 @@ function QuestionList({ questions, handleQuestionClick, setQuestions }) {
     }
   }, [filter, offset, questions, setQuestions]);
 
+
+  
   useEffect(() => {
     handleSearch();
   }, [filter])
@@ -56,18 +58,6 @@ function QuestionList({ questions, handleQuestionClick, setQuestions }) {
     setFilter('');
   };
 
-  const handleScroll = (event) => {
-    const { scrollTop, clientHeight, scrollHeight } = event.currentTarget;
-    if (scrollTop + clientHeight >= scrollHeight) {
-    }
-  };
-
-  function handleKeyPress(event) {
-    console.log(event.key)
-    if (event.key === 'Enter') {
-    }
-  }
-
   return (
     <>
       <h1 className='main-title'>List Screen</h1>
@@ -75,13 +65,13 @@ function QuestionList({ questions, handleQuestionClick, setQuestions }) {
       <div className='search-container'>
         <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} />
         <div className='icon-container-search'>
-          <FontAwesomeIcon icon={faSearch} className='search-icon' onClick={handleSearch} onSubmit={handleKeyPress} />
+          <FontAwesomeIcon icon={faSearch} className='search-icon' onClick={handleSearch} />
         </div>
         <div className='icon-container-dismiss'>
           <FontAwesomeIcon icon={faTimes} className='dismiss-icon' onClick={handleDismiss} />
         </div>
       </div>
-      <ul className="question-list" onScroll={handleScroll}>
+      <ul className="question-list">
         {questions.map((question) => (
         <li key={question.id} className="question-card" onClick={() => handleQuestionClick(question.id)}>
           <div>

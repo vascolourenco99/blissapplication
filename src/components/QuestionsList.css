@@ -4,6 +4,7 @@
 
 .subtitle {
   margin: 16px;
+  color: #F6F7FB;
 }
 
 .loader-container {
@@ -35,7 +36,7 @@ input[type="text"] {
 
 .icon-container-search {
   position: absolute;
-  top: 42%;
+  top: 50%;
   left: 0.5rem;
   transform: translateY(-50%);
   color: #F6F7FB;
@@ -43,9 +44,13 @@ input[type="text"] {
 
 .icon-container-dismiss{
   position: absolute;
-  top: 42%;
+  top: 55%;
   right: 0.5rem;
   transform: translateY(-50%);
+}
+
+.search-icon {
+  cursor: pointer;
 }
 
 .dismiss-icon {
@@ -130,7 +135,7 @@ ul {
 
   .icon-container-dismiss{
     position: absolute;
-    top: 42%;
+    top: 55%;
     right: 0.5rem;
     transform: translateY(-50%);
   }

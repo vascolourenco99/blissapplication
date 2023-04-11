@@ -30,6 +30,10 @@ export const putQuestionVote = async (id, updatedQuestion) => {
   );
 } 
 
+export const handleRetry = () => {
+  getHealth();
+};
+
 // finish this refactor
 /* export const shareQuestion = async (destinationEmail) => {
   await fetch(`https://private-anon-2c8b79ecec-blissrecruitmentapi.apiary-mock.com/share?destination_email=${destinationEmail}&content_url=${window.location.href}`, {

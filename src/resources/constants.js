@@ -1,7 +1,10 @@
-export const API_URL = 'https://private-anon-493d937d16-blissrecruitmentapi.apiary-mock.com/';
+// Import the BLISS_API environment variable from .env.local
+const BLISS_API = process.env.REACT_APP_BLISS_API;
 
-export const QUESTIONS_URL = API_URL + 'questions';
-export const HEALTH_URL = API_URL + 'health';
+// Create the API_URL constant using the BLISS_API variable
+export const API_URL = BLISS_API;
+
+export const QUESTIONS_URL = `${API_URL}/questions`;
+export const HEALTH_URL = `${API_URL}/health`;
 export const QUESTIONS_LIMIT = 3;
-//export const QUESTIONS_OFFSET = 2;
-
+//export const QUESTIONS_OFFSET = 2; */
