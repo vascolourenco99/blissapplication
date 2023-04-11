@@ -2,8 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import './QuestionsList.css';
 import { QUESTIONS_URL, QUESTIONS_LIMIT } from '../resources/constants';
 import Loader from './Loader';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons'
+import AllQuestion from '../screens/AllQuestions';
 
 // QuestionList component
 function QuestionList({ questions, handleQuestionClick, setQuestions }) {
@@ -60,27 +59,14 @@ function QuestionList({ questions, handleQuestionClick, setQuestions }) {
 
   return (
     <>
-      <h1 className='main-title'>List Screen</h1>
-      <h6 className='subtitle'> Search for question! </h6>
-      <div className='search-container'>
-        <input type="text" value={filter} onChange={(e) => setFilter(e.target.value)} />
-        <div className='icon-container-search'>
-          <FontAwesomeIcon icon={faSearch} className='search-icon' onClick={handleSearch} />
-        </div>
-        <div className='icon-container-dismiss'>
-          <FontAwesomeIcon icon={faTimes} className='dismiss-icon' onClick={handleDismiss} />
-        </div>
-      </div>
-      <ul className="question-list">
-        {questions.map((question) => (
-        <li key={question.id} className="question-card" onClick={() => handleQuestionClick(question.id)}>
-          <div>
-            <img src={question.thumb_url} alt={question.question} />
-            <h4>{question.question}</h4>
-          </div>
-        </li>
-      ))}
-      </ul>
+      <AllQuestion
+        filter={filter}
+        setFilter={setFilter}
+        handleSearch={handleSearch}
+        handleDismiss={handleDismiss}
+        questions={questions}
+        handleQuestionClick={handleQuestionClick}
+      />
       {loading && (
         <div className="loader-container">
           <Loader loading={loading} />
