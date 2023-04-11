@@ -19,7 +19,7 @@ Finally, I rely on @fortawesome/fontawesome-svg-core, @fortawesome/free-solid-sv
 ### `Installation`
 To use this project, please follow these steps:
 
-Install dependencies by running npm install.
+Install dependencies by running `npm install`.
 
 ### `npm start`
 
