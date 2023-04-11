@@ -6,7 +6,7 @@ import {Routes ,Route, useNavigate } from 'react-router-dom';
 import QuestionDetails from './components/QuestionDetails';
 import QuestionsList from './components/QuestionsList';
 import OfflineScreen from './components/OfflineScreen';
-import { getHealth, handleRetry } from './api';
+import { getHealth } from './api';
 
 // Main component
 function App() {
@@ -70,10 +70,9 @@ function App() {
           </Routes>  
         </>
       ) : (
-        <>
+        <div className="offline-container">
           <OfflineScreen />
-          <button onClick={handleRetry}>Retry</button>
-        </>
+        </div>
       )}
     </div>
   );
