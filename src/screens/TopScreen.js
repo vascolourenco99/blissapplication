@@ -5,7 +5,6 @@ import { faArrowLeft, faShare } from '@fortawesome/free-solid-svg-icons';
 
 function TopScreenFeatures({ handleShare }) {
   return (
-    <>
       <div className="question-header">
         <FontAwesomeIcon className="question-back-button" icon={faArrowLeft} onClick={() => window.history.back()}/>
         <button className="question-share-button" onClick={handleShare}>
@@ -13,7 +12,6 @@ function TopScreenFeatures({ handleShare }) {
           Share
         </button>
       </div>
-    </>
   );
 }
 

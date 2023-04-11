@@ -6,24 +6,25 @@
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
   display: none;
+  backdrop-filter: blur(10px);
 }
 
 .modal.open {
   display: flex;
 }
 
-.modal-title {
-  color: #121931;
-  margin-bottom: 20px;
-  margin-top: 0;
-}
-
 .modal-content {
   background-color: #fff;
   margin: auto;
-  padding: 30px 20px;
+  padding: 20px;
   max-width: 400px;
   border-radius: 5px;
+  position: relative;
+}
+
+.modal-title {
+  color: #121931;
+  margin: 20px 0;
 }
 
 .modal-input {
@@ -32,7 +33,12 @@
   align-items: center;
 }
 
-.share-modal-input[type="email"] {
+.modal-p {
+  color: #121931;
+  font-family: 'Inter', sans-serif;
+}
+
+.share-modal-input {
   font-size: 16px;
   padding: 4px 10px;
   display: flex;
@@ -44,20 +50,11 @@
   border-color: #121931;
 }
 
-.share-modal-input[type="text"] {
-  font-size: 16px;
-  padding: 5px 10px;
-  display: flex;
-  height: 1.5rem;
-  border-radius: 5px;
-  margin-right: 0.5rem;
-  width: 16rem;
-  background-color: #121931;
-  border-width: 1;
-  border-color: #121931;
+.share-modal-input.selected {
+  border-color: #13C79A !important;
 }
 
-.modal-button {
+.modal-button-share {
   background-color: #13C79A;
   color: #fff;
   border: none;
@@ -67,6 +64,27 @@
   height: 36px;
   font-family: 'Inter', sans-serif;
   font-size: 12px;
+  font-weight: 700;
+}
+
+.modal-button-copy-link {
+  color: #121931;
+  border: 1;
+  border-radius: 5px;
+  border-color: #121931;
+  padding: 10px;
+  cursor: pointer;
+  height: 36px;
+  font-family: 'Inter', sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.modal-button-link-icon {
+  margin-right: 5px;
 }
 
 .modal-button:hover {
@@ -74,21 +92,17 @@
 }
 
 @media only screen and (max-width: 600px) {
-  .modal-title {
-    margin-top: 20px;
-  }
-
   .modal-content {
-    background-color: #fff;
-    position: absolute;
+    height: 150px;
+    border-radius: 20px 20px 0 0;
+    position: fixed;
     bottom: 0;
-    height: 250px;
-    width: 100%;
-    border-radius: 5px ;
-    padding: 30px 20px;
+    left: 0;
+    right: 0;
+    padding-bottom: 40px;
   }
 
-  .share-modal-input[type="email"] {
+  .share-modal-input {
     font-size: 12px;
     padding: 4px 10px;
     display: flex;
@@ -99,17 +113,9 @@
     border-width: 1;
     border-color: #121931;
   }
-
-  .share-modal-input[type="text"] {
-    font-size: 12px;
-    padding: 5px 10px;
-    display: flex;
-    height: 1.5rem;
-    border-radius: 5px;
-    margin-right: 0.5rem;
-    width: 12rem;
-    background-color: #121931;
-    border-width: 1;
-    border-color: #121931;
-  }
 }
+
+
+
+
+

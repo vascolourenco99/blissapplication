@@ -22,6 +22,7 @@
   font-size: 16px;
   border-radius: 5px;
   padding: 10px;
+  border: 0;
 }
 
 .question-share-button-icon {
@@ -84,7 +85,8 @@
 }
 
 .choice-button:hover {
-  color: #121931;
+  color: #121931 !important;
+  border-color: #121931 !important;
   background-color: lightgray;
 }
 
@@ -114,13 +116,14 @@ ul {
   border-radius: 5px;
   font-size: 16px;
   margin: 24px;
+  border: 0;
 }
 
 /* Styles for mobile */
 @media only screen and (max-width: 600px) {
   .question-title {
     font-size: 20px;
-    margin: 1rem;
+    margin: 1rem 2rem 0 2rem;
     font-size: 21px !important;
   }
 
@@ -132,13 +135,12 @@ ul {
   }
 
   .question-image {
-    margin: 10px 0;
     width: 250px;
   }
 
   .choices-list {
     flex-direction: column;
-    margin-bottom: 10px;
+    margin: 0;
   }
 
   .choice-item {

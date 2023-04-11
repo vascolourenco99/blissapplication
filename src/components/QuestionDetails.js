@@ -64,7 +64,7 @@ function QuestionDetails() {
     };
 
     try {
-      await putQuestionVote(id, updatedQuestion) 
+      await putQuestionVote(id, updatedQuestion)
       setQuestion(updatedQuestion)
     } catch (error) {
       console.error(`Error updating question with id ${id}:`, error);
@@ -87,14 +87,12 @@ function QuestionDetails() {
       <ShareModal isOpen={isModalOpen} onClose={handleModalClose} />
       <div className="question-container">
         {question ? (
-          <>
             <Question
                 question={question}
                 selectedChoice={selectedChoice}
                 handleChoiceClick={handleChoiceClick}
                 handleVote={handleVote}
               />
-          </>
         ) : (
           <div className="loader-container">
             <Loader loading={loading} />
@@ -105,4 +103,4 @@ function QuestionDetails() {
   );
 }
 
-export default QuestionDetails;
+export default QuestionDetails

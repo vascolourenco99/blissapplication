@@ -2,7 +2,7 @@ import PuffLoader from 'react-spinners/PuffLoader';
 
 function Loader({ loading }) {
   return (
-    <div>
+    <>
       {loading && (
         <PuffLoader
           color={'#F6F7FB'}
@@ -12,7 +12,7 @@ function Loader({ loading }) {
           data-testid="loader"
         />
       )}
-    </div>
+    </>
   );
 }
 export default Loader;
