@@ -16,15 +16,14 @@ function QuestionDetails() {
   const [loading, setLoading] = useState(true);
   const [selectedChoice, setSelectedChoice] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  //const [selectedChoiceVotes, setSelectedChoiceVotes] = useState(null)
 
 
   const fetchQuestion = useCallback( async () => {
     try {
       const data =  await getQuestion(id)
-      //console.log(data);
       setQuestion(data);
       setLoading(false);
+
     } catch (error) {
       console.error(`Error fetching question with id ${id}:`, error);
       setLoading(false);
@@ -37,7 +36,6 @@ function QuestionDetails() {
 
   const handleChoiceClick = (choice) => {
     setSelectedChoice(choice.choice);
-    //setSelectedChoiceVotes(choice.votes);
   };
 
   const handleVote = async () => {
@@ -65,12 +63,8 @@ function QuestionDetails() {
       choices: updatedChoices,
     };
 
-    /* console.log("Os votos atualizados")
-    console.log(updatedChoices) */
-
     try {
       await putQuestionVote(id, updatedQuestion) 
-      //console.log(updatedQuestion)
       setQuestion(updatedQuestion)
     } catch (error) {
       console.error(`Error updating question with id ${id}:`, error);

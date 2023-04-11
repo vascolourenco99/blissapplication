@@ -22,7 +22,7 @@
   background-color: #fff;
   margin: auto;
   padding: 30px 20px;
-  width: 400px;
+  max-width: 400px;
   border-radius: 5px;
 }
 
@@ -86,7 +86,6 @@
     width: 100%;
     border-radius: 5px ;
     padding: 30px 20px;
-    border-radius: 5px;
   }
 
   .share-modal-input[type="email"] {

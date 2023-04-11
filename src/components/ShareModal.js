@@ -13,11 +13,11 @@ const ShareModal = ({ isOpen, onClose }) => {
     });
 
     if (response.ok) {
-      // success
       alert('Content shared successfully!');
+
     } else {
-      // error
       alert('Error sharing content!');
+      
     }
 
     onClose();
