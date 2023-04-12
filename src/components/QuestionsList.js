@@ -23,8 +23,7 @@ function QuestionList({ questions, handleQuestionClick, setQuestions }) {
 
       const response = await fetch(url);
       const data = await response.json();
-
-      // repensar na logica do offset
+      
       if (offset) {
         setQuestions([...questions, ...data]); 
         if (data.length < QUESTIONS_LIMIT) {
@@ -37,7 +36,6 @@ function QuestionList({ questions, handleQuestionClick, setQuestions }) {
         setQuestions(data)
         setOffset(0 + QUESTIONS_LIMIT);
         console.log(data)
-
       }
 
     } catch (error) {

@@ -1,4 +1,4 @@
-import { QUESTIONS_URL, HEALTH_URL } from '../resources/constants';
+import { QUESTIONS_URL, HEALTH_URL, QUESTIONS_LIMIT } from '../resources/constants';
 
 export const getHealth = async () => {
   try {
@@ -7,8 +7,21 @@ export const getHealth = async () => {
     return data;
   } catch (error) {
     console.error('Error fetching health status:', error);
+    return { status: 'UNKNOWN' }; // default value for health status
   }
 }
+
+export const getQuestions = async (filterParam) => {
+  try {
+    const response = await fetch(`${QUESTIONS_URL}?limit=${QUESTIONS_LIMIT}&offset=0&filter=${filterParam}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('Error fetching questions:', error);
+    throw error;
+  }
+}
+
 
 export const getQuestion = async (id) => {
   const url = QUESTIONS_URL + `/` + id;
@@ -34,9 +47,12 @@ export const handleRetry = () => {
   getHealth();
 };
 
-// finish this refactor
-/* export const shareQuestion = async (destinationEmail) => {
-  await fetch(`https://private-anon-2c8b79ecec-blissrecruitmentapi.apiary-mock.com/share?destination_email=${destinationEmail}&content_url=${window.location.href}`, {
-      method: 'POST'
-    });
-} */
+export const shareQuestion = async (destinationEmail) => {
+  const response = await fetch(`https://private-anon-2c8b79ecec-blissrecruitmentapi.apiary-mock.com/share?destination_email=${destinationEmail}&content_url=${window.location.href}`, {
+    method: 'POST'
+  });
+  
+  const data = await response.json();
+
+  return { ok: response.ok, data };
+};

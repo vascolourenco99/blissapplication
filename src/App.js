@@ -1,12 +1,11 @@
 import { useState, useEffect } from 'react';
 import Loader from './components/Loader';
 import './App.css';
-import { QUESTIONS_URL, QUESTIONS_LIMIT } from './resources/constants';
 import {Routes ,Route, useNavigate } from 'react-router-dom';
 import QuestionDetails from './components/QuestionDetails';
 import QuestionsList from './components/QuestionsList';
 import OfflineScreen from './components/OfflineScreen';
-import { getHealth } from './api';
+import { getHealth, getQuestions } from './api';
 
 // Main component
 function App() {
@@ -22,7 +21,7 @@ function App() {
   useEffect(() => {
     async function fetchHealth() { 
     const data = await getHealth();
-    setHealthStatus(data.status);
+    setHealthStatus(data?.status || 'UNKNOW');
     }
     fetchHealth();
   }
@@ -30,13 +29,12 @@ function App() {
 
   // Effect hook to fetch questions data from server
   useEffect(() => {
-    async function fetchQuestions() {
+    async function fetchData() {
       try {
         setLoading(true);
         const params = new URLSearchParams(window.location.search);
         const filterParam = params.get('filter') || '';
-        const response = await fetch(`${QUESTIONS_URL}?limit=${QUESTIONS_LIMIT}&offset=0&filter=${filterParam}`);
-        const data = await response.json();
+        const data = await getQuestions(filterParam);
         setQuestions(data);
         setLoading(false);
       } catch (error) {
@@ -44,8 +42,8 @@ function App() {
         setLoading(false);
       }
     }
-
-    fetchQuestions();
+  
+    fetchData();
   }, [filter]);
 
   // Event handler for clicking on a question

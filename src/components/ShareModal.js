@@ -1,25 +1,27 @@
 import React, { useState } from 'react';
 import './ShareModal.css';
 import ModalScreen from '../screens/ModalScreen';
-
+import { shareQuestion } from '../api';
 
 const ShareModal = ({ isOpen, onClose }) => {
   const [destinationEmail, setDestinationEmail] = useState('');
 
   const handleSubmit = async (e) => {
-
-    const response = await fetch(`https://private-anon-2c8b79ecec-blissrecruitmentapi.apiary-mock.com/share?destination_email=${destinationEmail}&content_url=${window.location.href}`, {
-      method: 'POST'
-    });
-
-    if (response.ok) {
-      alert('Content shared successfully!');
-
-    } else {
+    e.preventDefault();
+  
+    try {
+      const data = await shareQuestion(destinationEmail);
+      console.log(data)
+      if (data.ok) {
+        alert('Content shared successfully!');
+      } else {
+        alert('Error sharing content!');
+      }
+    } catch (error) {
+      console.error('Error sharing content:', error);
       alert('Error sharing content!');
-      
     }
-
+  
     onClose();
   };
 
