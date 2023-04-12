@@ -1,6 +1,6 @@
 import React from 'react';
 import './OfflineScreen.css'
-import { handleRetry } from '../api/';
+import { handleRetry } from '../../api';
 
 const OfflineScreen = () => {
   return (

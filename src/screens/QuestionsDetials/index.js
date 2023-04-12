@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
-import Loader from './Loader';
+import Loader from '../../components/Loader';
 import './QuestionDetails.css'
-import '../App.css';
-import ShareModal from './ShareModal';
-import {getQuestion, putQuestionVote} from '../api'
-import Question from '../screens/Question';
-import TopScreenFeatures from '../screens/TopScreen';
+import '../../App.css';
+import ShareModal from '../../components/ShareModal';
+import {getQuestion, putQuestionVote} from '../../api'
+import Header from '../../components/Header';
 
 
 
@@ -22,11 +21,13 @@ function QuestionDetails() {
     try {
       const data =  await getQuestion(id)
       setQuestion(data);
-      setLoading(false);
+      
 
     } catch (error) {
       console.error(`Error fetching question with id ${id}:`, error);
-      setLoading(false);
+      
+    } finally {
+      setLoading(false)
     }
   }, [id])
 
@@ -48,14 +49,14 @@ function QuestionDetails() {
       return;
     }
 
-    const updatedChoices = question.choices.map((choice) => {
-      if (choice.choice === selectedChoice) {
+    const updatedChoices = question.choices.map((question) => {
+      if (question.choice === selectedChoice) {
         return {
-          ...choice,
-          votes: choice.votes + 1,
+          ...question,
+          votes: question.votes + 1,
         };
       }
-      return choice;
+      return question;
     });
 
     const updatedQuestion = {
@@ -81,18 +82,33 @@ function QuestionDetails() {
 
   return (
     <div className="question-fullscreen">
-      <TopScreenFeatures
+      <Header
       handleShare={handleShare}
       />
       <ShareModal isOpen={isModalOpen} onClose={handleModalClose} />
       <div className="question-container">
         {question ? (
-            <Question
-                question={question}
-                selectedChoice={selectedChoice}
-                handleChoiceClick={handleChoiceClick}
-                handleVote={handleVote}
-              />
+            <>
+            <h1 className="question-title">{question.question}</h1>
+            <div className="question-details">
+              <img className="question-image" src={question.image_url} alt={question.question} />
+              <ul className="choices-list">
+                {question.choices.map(({choice, votes}) => (
+                  <li key={`row-${choice}`} className="choice-item">
+                    <button
+                      className={`choice-button ${selectedChoice === choice ? "selected" : ""}`}
+                      onClick={() => handleChoiceClick({choice, votes})}
+                    >
+                      {`${choice}: ${votes} votes`}
+                    </button>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <button className="question-vote-button" onClick={handleVote} disabled={!selectedChoice}>
+              Vote
+            </button>
+          </>
         ) : (
           <div className="loader-container">
             <Loader loading={loading} />

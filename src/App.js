@@ -2,9 +2,9 @@ import { useState, useEffect } from 'react';
 import Loader from './components/Loader';
 import './App.css';
 import {Routes ,Route, useNavigate } from 'react-router-dom';
-import QuestionDetails from './components/QuestionDetails';
-import QuestionsList from './components/QuestionsList';
-import OfflineScreen from './components/OfflineScreen';
+import QuestionDetails from './screens/QuestionsDetials';
+import QuestionsList from './screens/QuestionsList';
+import OfflineScreen from './screens/OfflineScreen';
 import { getHealth, getQuestions } from './api';
 
 // Main component
@@ -36,10 +36,12 @@ function App() {
         const filterParam = params.get('filter') || '';
         const data = await getQuestions(filterParam);
         setQuestions(data);
-        setLoading(false);
+        
       } catch (error) {
         console.error('Error fetching questions:', error);
-        setLoading(false);
+       
+      } finally {
+        setLoading(false)
       }
     }
   

@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import './ShareModal.css';
-import ModalScreen from '../screens/ModalScreen';
 import { shareQuestion } from '../api';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLink } from '@fortawesome/free-solid-svg-icons';
 
 const ShareModal = ({ isOpen, onClose }) => {
   const [destinationEmail, setDestinationEmail] = useState('');
@@ -12,7 +13,7 @@ const ShareModal = ({ isOpen, onClose }) => {
     try {
       const data = await shareQuestion(destinationEmail);
       console.log(data)
-      if (data.ok) {
+      if (data.status === "OK") {
         alert('Content shared successfully!');
       } else {
         alert('Error sharing content!');
@@ -26,13 +27,22 @@ const ShareModal = ({ isOpen, onClose }) => {
   };
 
   return (
-    <ModalScreen
-      isOpen={isOpen}
-      onClose={onClose}
-      handleSubmit={handleSubmit}
-      destinationEmail={destinationEmail}
-      setDestinationEmail={setDestinationEmail}
-    />
+    <div className={`modal ${isOpen ? 'open' : ''}`} onClick={onClose}>
+      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+        <button className="modal-button-copy-link" onClick={() => navigator.clipboard.writeText(window.location.href)}>
+          <FontAwesomeIcon icon={faLink} className="modal-button-link-icon" />
+          Copy Link
+        </button>
+        <h2 className="modal-title">Share Link</h2>
+        <form onSubmit={handleSubmit}>
+          <p className="modal-p">Enter the destination email:</p>
+          <div className="modal-input">
+            <input type="email" className="share-modal-input" value={destinationEmail} onChange={(e) => setDestinationEmail(e.target.value)} required />
+            <button type="submit" className="modal-button-share">Share</button>
+          </div>
+        </form>
+      </div>
+    </div>
   );
 };
 

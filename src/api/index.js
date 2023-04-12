@@ -1,4 +1,10 @@
-import { QUESTIONS_URL, HEALTH_URL, QUESTIONS_LIMIT } from '../resources/constants';
+const BLISS_API = process.env.REACT_APP_BLISS_API;
+
+export const QUESTIONS_LIMIT = 3;
+
+const QUESTIONS_URL = `${BLISS_API}/questions`;
+const HEALTH_URL = `${BLISS_API}/health`;
+
 
 export const getHealth = async () => {
   try {
@@ -11,9 +17,13 @@ export const getHealth = async () => {
   }
 }
 
-export const getQuestions = async (filterParam) => {
+export const handleRetry = () => {
+  getHealth();
+};
+
+export const getQuestions = async (filterParam, offset = 0) => {
   try {
-    const response = await fetch(`${QUESTIONS_URL}?limit=${QUESTIONS_LIMIT}&offset=0&filter=${filterParam}`);
+    const response = await fetch(`${QUESTIONS_URL}?limit=${QUESTIONS_LIMIT}&offset=${offset}&filter=${filterParam}`);
     const data = await response.json();
     return data;
   } catch (error) {
@@ -21,7 +31,6 @@ export const getQuestions = async (filterParam) => {
     throw error;
   }
 }
-
 
 export const getQuestion = async (id) => {
   const url = QUESTIONS_URL + `/` + id;
@@ -41,18 +50,12 @@ export const putQuestionVote = async (id, updatedQuestion) => {
       body: JSON.stringify({updatedQuestion}),
     }
   );
-} 
-
-export const handleRetry = () => {
-  getHealth();
-};
+}
 
 export const shareQuestion = async (destinationEmail) => {
-  const response = await fetch(`https://private-anon-2c8b79ecec-blissrecruitmentapi.apiary-mock.com/share?destination_email=${destinationEmail}&content_url=${window.location.href}`, {
+  const response = await fetch(`${BLISS_API}/share?destination_email=${destinationEmail}&content_url=${window.location.href}`, {
     method: 'POST'
   });
-  
   const data = await response.json();
-
-  return { ok: response.ok, data };
+  return data
 };
