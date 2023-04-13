@@ -7,7 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch, faTimes } from '@fortawesome/free-solid-svg-icons';
 
 // QuestionList component
-function QuestionList({ questions, handleQuestionClick, setQuestions }) {
+const QuestionList = ({ questions, handleQuestionClick, setQuestions }) => {
   const [filter, setFilter] = useState('');
   const [offset, setOffset] = useState(0);
   const [loading, setLoading] = useState(false);

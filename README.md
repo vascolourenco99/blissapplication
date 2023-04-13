@@ -21,6 +21,12 @@ To use this project, please follow these steps:
 
 Install dependencies by running `npm install`.
 
+After installing the dependencies for the project, please create a **.env.local** file in the root directory of the project. In this file, you will need to **set the environment variable REACT_APP_BLISS_API** to the API endpoint you will be using. For example:
+**REACT_APP_BLISS_API = API**
+
+To clarify, this step is crucial for the proper functioning of the project, as it ensures that the application can properly communicate with the API. Without the .env.local file and the REACT_APP_BLISS_API environment variable set correctly, the application will not be able to make API requests.
+
+
 ### `npm start`
 
 Runs the app in the development mode.\

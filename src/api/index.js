@@ -1,6 +1,6 @@
 const BLISS_API = process.env.REACT_APP_BLISS_API;
 
-export const QUESTIONS_LIMIT = 3;
+export const QUESTIONS_LIMIT = 10;
 
 const QUESTIONS_URL = `${BLISS_API}/questions`;
 const HEALTH_URL = `${BLISS_API}/health`;

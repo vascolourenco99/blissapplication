@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faShare } from '@fortawesome/free-solid-svg-icons';
 
 
-function Header({ handleShare }) {
+const Header = ({ handleShare }) => {
   return (
       <div className="question-header">
         <FontAwesomeIcon className="question-back-button" icon={faArrowLeft} onClick={() => window.history.back()}/>

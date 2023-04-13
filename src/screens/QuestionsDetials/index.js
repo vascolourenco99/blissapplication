@@ -9,7 +9,7 @@ import Header from '../../components/Header';
 
 
 
-function QuestionDetails() {
+const QuestionDetails = () => {
   const { id } = useParams();
   const [question, setQuestion] = useState(null);
   const [loading, setLoading] = useState(true);

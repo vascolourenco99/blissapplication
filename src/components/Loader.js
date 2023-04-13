@@ -1,6 +1,6 @@
 import PuffLoader from 'react-spinners/PuffLoader';
 
-function Loader({ loading }) {
+const Loader = ({ loading }) => {
   return (
     <>
       {loading && (

@@ -8,7 +8,7 @@ import OfflineScreen from './screens/OfflineScreen';
 import { getHealth, getQuestions } from './api';
 
 // Main component
-function App() {
+const App = () => {
   const navigate = useNavigate();
   
   // State variables
