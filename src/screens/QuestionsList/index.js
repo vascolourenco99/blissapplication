@@ -30,7 +30,7 @@ const QuestionList = ({ questions, handleQuestionClick, setQuestions }) => {
       } else {
         setQuestions(data)
         setOffset(0 + QUESTIONS_LIMIT);
-        console.log(data)
+
       }
 
     } catch (error) {

@@ -12,7 +12,6 @@ const ShareModal = ({ isOpen, onClose }) => {
   
     try {
       const data = await shareQuestion(destinationEmail);
-      console.log(data)
       if (data.status === "OK") {
         alert('Content shared successfully!');
       } else {
